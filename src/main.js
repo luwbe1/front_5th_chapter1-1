@@ -1,17 +1,52 @@
-const MainPage = () => `
-  <div class="bg-gray-100 min-h-screen flex justify-center">
-    <div class="max-w-md w-full">
+import { Footer } from "./components/footer";
+
+const state = {
+  loggedIn: false,
+};
+
+const checkLoginStatus = () => {
+  state.loggedIn = JSON.parse(localStorage.getItem("user")) !== null;
+};
+
+const handleLogout = () => {
+  localStorage.removeItem("user");
+  state.loggedIn = false; // 로그아웃 상태로 변경
+  history.pushState(null, null, "/login");
+  render();
+};
+
+const Header = () => {
+  const { pathname } = location;
+
+  return /*html*/ `
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
 
-      <nav class="bg-white shadow-md p-2 sticky top-14">
+      <nav class="bg-white shadow-md p-2 sticky top-14" tagItem="tab">
         <ul class="flex justify-around">
-          <li><a href="/" class="text-blue-600">홈</a></li>
-          <li><a href="/profile" class="text-gray-600">프로필</a></li>
-          <li><a href="#" class="text-gray-600">로그아웃</a></li>
+          <li><a href="/" class="${pathname === "/" ? "text-blue-600" : "text-gray-600"}" tagItem="nav">홈</a></li>
+        ${
+          state.loggedIn
+            ? `
+          <li><a href="/profile" class="${pathname === "/profile" ? "text-blue-600" : "text-gray-600"}" tagItem="nav">프로필</a></li>
+          <li><a href="/logout" id="logout" class="text-gray-600" tagItem="nav">로그아웃</a></li>
+        `
+            : `
+          <li><a href="/login" class="text-gray-600" tagItem="nav">로그인</a></li>
+        `
+        }
         </ul>
       </nav>
+`;
+};
+
+const MainPage = () => /*html*/ `
+  <div id="root">
+  <div class="bg-gray-100 min-h-screen flex justify-center">
+    <div class="max-w-md w-full">
+
+      ${Header()}
 
       <main class="p-4">
         <div class="mb-4 bg-white rounded-lg shadow p-4">
@@ -103,14 +138,14 @@ const MainPage = () => `
         </div>
       </main>
 
-      <footer class="bg-gray-200 p-4 text-center">
-        <p>&copy; 2024 항해플러스. All rights reserved.</p>
-      </footer>
+      ${Footer()}
     </div>
   </div>
+</div>
 `;
 
-const ErrorPage = () => `
+const ErrorPage = () => /*html*/ `
+  <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
       <h1 class="text-2xl font-bold text-blue-600 mb-4">항해플러스</h1>
@@ -124,20 +159,38 @@ const ErrorPage = () => `
       </a>
     </div>
   </main>
+</div>
 `;
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-const LoginPage = () => `
+  const username = document.getElementById("username").value;
+  const email = ""; // 필요하다면 적절한 이메일 값을 설정
+  const bio = ""; // 필요하다면 적절한 bio 값을 설정
+
+  // 사용자 정보를 로컬스토리지에 저장
+  localStorage.setItem("user", JSON.stringify({ username, email, bio }));
+
+  checkLoginStatus();
+  // 상태 변경 후 페이지 이동
+  history.pushState(null, null, "/profile");
+  render();
+};
+
+const LoginPage = () => {
+  return /*html*/ `
+    <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
       <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
-      <form>
+      <form id="login-form" onsubmit="handleSubmit(event)">
         <div class="mb-4">
-          <input type="text" placeholder="이메일 또는 전화번호" class="w-full p-2 border rounded">
+          <input type="text" id="username" placeholder="사용자 이름" class="w-full p-2 border rounded">
         </div>
         <div class="mb-6">
-          <input type="password" placeholder="비밀번호" class="w-full p-2 border rounded">
+          <input type="password" id="password" placeholder="비밀번호" class="w-full p-2 border rounded">
         </div>
-        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded font-bold">로그인</button>
+        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded font-bold" >로그인</button>
       </form>
       <div class="mt-4 text-center">
         <a href="#" class="text-blue-600 text-sm">비밀번호를 잊으셨나요?</a>
@@ -148,30 +201,39 @@ const LoginPage = () => `
       </div>
     </div>
   </main>
+</div>
 `;
+};
 
-const ProfilePage = () => `
+const handleProfileSubmit = (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const bio = document.getElementById("bio").value;
+
+  console.log(username, email, bio);
+
+  localStorage.setItem("user", JSON.stringify({ username, email, bio }));
+
+  alert("프로필이 업데이트 되었습니다.");
+};
+
+const ProfilePage = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  return /*html*/ `
   <div id="root">
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
-        <header class="bg-blue-600 text-white p-4 sticky top-0">
-          <h1 class="text-2xl font-bold">항해플러스</h1>
-        </header>
-
-        <nav class="bg-white shadow-md p-2 sticky top-14">
-          <ul class="flex justify-around">
-            <li><a href="/" class="text-gray-600">홈</a></li>
-            <li><a href="/profile" class="text-blue-600">프로필</a></li>
-            <li><a href="#" class="text-gray-600">로그아웃</a></li>
-          </ul>
-        </nav>
+  
+      ${Header()}
 
         <main class="p-4">
           <div class="bg-white p-8 rounded-lg shadow-md">
             <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
               내 프로필
             </h2>
-            <form>
+            <form id="profile-form" onsubmit="handleProfileSubmit(event)">
               <div class="mb-4">
                 <label
                   for="username"
@@ -182,7 +244,8 @@ const ProfilePage = () => `
                   type="text"
                   id="username"
                   name="username"
-                  value="홍길동"
+                  placeholder="사용자 이름"
+                  value="${user.username}"
                   class="w-full p-2 border rounded"
                 />
               </div>
@@ -196,7 +259,8 @@ const ProfilePage = () => `
                   type="email"
                   id="email"
                   name="email"
-                  value="hong@example.com"
+                  placeholder="이메일"
+                  value="${user.email}"
                   class="w-full p-2 border rounded"
                 />
               </div>
@@ -211,9 +275,8 @@ const ProfilePage = () => `
                   name="bio"
                   rows="4"
                   class="w-full p-2 border rounded"
-                >
-안녕하세요, 항해플러스에서 열심히 공부하고 있는 홍길동입니다.</textarea
-                >
+                  placeholder="자기소개"
+                >${user.bio}</textarea>
               </div>
               <button
                 type="submit"
@@ -225,17 +288,81 @@ const ProfilePage = () => `
           </div>
         </main>
 
-        <footer class="bg-gray-200 p-4 text-center">
-          <p>&copy; 2024 항해플러스. All rights reserved.</p>
-        </footer>
+      ${Footer()}
       </div>
     </div>
   </div>
-`;
+  `;
+};
 
-document.body.innerHTML = `
-  ${MainPage()}
-  ${ProfilePage()}
-  ${LoginPage()}
-  ${ErrorPage()}
-`;
+const App = () => {
+  checkLoginStatus();
+
+  if (location.pathname === "/profile") {
+    if (!state.loggedIn) {
+      // user가 없으면 로그인 페이지로 리디렉션
+      history.pushState(null, null, "/login");
+      return LoginPage();
+    }
+    return ProfilePage();
+  }
+
+  if (location.pathname === "/login") {
+    if (state.loggedIn) {
+      // 로그인 상태에서 로그인 페이지로 접근하면 메인 페이지로 리디렉션
+      history.pushState(null, null, "/");
+      return MainPage();
+    }
+    return LoginPage();
+  }
+
+  if (location.pathname === "/logout") {
+    handleLogout();
+    return LoginPage();
+  }
+
+  if (location.pathname === "/") {
+    return MainPage();
+  }
+
+  return ErrorPage();
+};
+
+const render = () => {
+  document.body.innerHTML = App();
+
+  const form = document.getElementById("login-form");
+  if (form) {
+    form.onsubmit = handleSubmit;
+  }
+
+  const profileForm = document.getElementById("profile-form");
+  if (profileForm) {
+    profileForm.onsubmit = handleProfileSubmit;
+  }
+
+  // 로그아웃 버튼 클릭 이벤트 추가
+  const logoutButton = document.getElementById("logout");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", handleLogout);
+  }
+};
+
+// 페이지 전환 시 새로고침을 방지하고 상태 업데이트를 하도록 수정
+window.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") {
+    e.preventDefault(); // 새로고침 방지
+
+    const href = e.target.getAttribute("href");
+    if (!href) return;
+
+    history.pushState(null, null, href); // 주소만 변경
+    render(); // 페이지를 새로 렌더링
+  }
+});
+
+// popstate 이벤트를 이용하여 뒤로가거나 앞으로 가는 경우에도 라우터를 호출
+window.addEventListener("popstate", () => render());
+
+// SPA의 초기 렌더링
+render();
