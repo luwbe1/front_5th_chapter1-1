@@ -25,11 +25,11 @@ const Header = () => {
 
       <nav class="bg-white shadow-md p-2 sticky top-14" tagItem="tab">
         <ul class="flex justify-around">
-          <li><a href="/" class="${pathname === "/" ? "text-blue-600" : "text-gray-600"}" tagItem="nav">홈</a></li>
+          <li><a href="/" class="${pathname === "/" ? "text-blue-600 font-bold" : "text-gray-600"}" tagItem="nav">홈</a></li>
         ${
           state.loggedIn
             ? `
-          <li><a href="/profile" class="${pathname === "/profile" ? "text-blue-600" : "text-gray-600"}" tagItem="nav">프로필</a></li>
+          <li><a href="/profile" class="${pathname === "/profile" ? "text-blue-600 font-bold" : "text-gray-600"}" tagItem="nav">프로필</a></li>
           <li><a href="/logout" id="logout" class="text-gray-600" tagItem="nav">로그아웃</a></li>
         `
             : `
@@ -302,6 +302,7 @@ const App = () => {
     if (!state.loggedIn) {
       // user가 없으면 로그인 페이지로 리디렉션
       history.pushState(null, null, "/login");
+      render();
       return LoginPage();
     }
     return ProfilePage();
@@ -311,6 +312,7 @@ const App = () => {
     if (state.loggedIn) {
       // 로그인 상태에서 로그인 페이지로 접근하면 메인 페이지로 리디렉션
       history.pushState(null, null, "/");
+      render();
       return MainPage();
     }
     return LoginPage();
