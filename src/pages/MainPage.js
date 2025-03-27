@@ -1,5 +1,7 @@
 import Header from "../components/header.js";
 import Footer from "../components/footer.js";
+import PostInput from "../components/PostInput.js";
+import { state } from "../state/state.js";
 
 const MainPage = () => /*html*/ `
   <div id="root">
@@ -9,10 +11,7 @@ const MainPage = () => /*html*/ `
       ${Header()}
 
       <main class="p-4">
-        <div class="mb-4 bg-white rounded-lg shadow p-4">
-          <textarea class="w-full p-2 border rounded" placeholder="무슨 생각을 하고 계신가요?"></textarea>
-          <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">게시</button>
-        </div>
+         ${state.loggedIn ? PostInput() : ""}
 
         <div class="space-y-4">
 

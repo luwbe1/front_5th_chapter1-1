@@ -1,4 +1,4 @@
-import { state } from "../main.js";
+import { state } from "../state/state.js";
 
 const Header = () => {
   const { pathname } = location;
