@@ -1,5 +1,5 @@
-import Footer from "../components/Footer.js";
-import Header from "../components/Header.js";
+import Header from "../components/header.js";
+import Footer from "../components/footer.js";
 
 const MainPage = () => /*html*/ `
   <div id="root">
