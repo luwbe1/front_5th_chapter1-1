@@ -3,6 +3,7 @@ import LoginPage from "./pages/LoginPage.js";
 import MainPage from "./pages/MainPage.js";
 import ProfilePage from "./pages/ProfilePage.js";
 import { state, checkLoginStatus } from "./state/state.js";
+import { handleProfileSubmit } from "./eventHandler.js";
 
 const handleLogout = () => {
   localStorage.removeItem("user");
@@ -25,19 +26,6 @@ const handleSubmit = (e) => {
   // 상태 변경 후 페이지 이동
   history.pushState(null, null, "/profile");
   render();
-};
-
-const handleProfileSubmit = (e) => {
-  e.preventDefault();
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
-  const bio = document.getElementById("bio").value;
-
-  console.log(username, email, bio);
-
-  localStorage.setItem("user", JSON.stringify({ username, email, bio }));
-
-  alert("프로필이 업데이트 되었습니다.");
 };
 
 const App = () => {
