@@ -1,7 +1,7 @@
-import ErrorPage from "/src/pages/ErrorPage.js";
-import LoginPage from "/src/pages/LoginPage.js";
-import MainPage from "/src/pages/MainPage.js";
-import ProfilePage from "/src/pages/ProfilePage.js";
+import ErrorPage from "./pages/ErrorPage.js";
+import LoginPage from "./pages/LoginPage.js";
+import MainPage from "./pages/MainPage.js";
+import ProfilePage from "./pages/ProfilePage.js";
 
 export const state = {
   loggedIn: false,
