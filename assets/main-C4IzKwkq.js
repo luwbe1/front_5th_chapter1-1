@@ -1,4 +1,4 @@
-import{F as i}from"./footer-D2ffVj6Z.js";const m="/front_5th_chapter1-1",o={loggedIn:!1},r=()=>{o.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},u=()=>{localStorage.removeItem("user"),o.loggedIn=!1,history.pushState(null,null,"/login"),l()},c=()=>{const{pathname:t}=location;return`
+import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},u=()=>{localStorage.removeItem("user"),o.loggedIn=!1,history.pushState(null,null,"/login"),l()},c=()=>{const{pathname:t}=location;return`
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
@@ -115,7 +115,7 @@ import{F as i}from"./footer-D2ffVj6Z.js";const m="/front_5th_chapter1-1",o={logg
     </div>
   </div>
 </div>
-`,b=()=>`
+`,m=()=>`
   <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
@@ -131,7 +131,7 @@ import{F as i}from"./footer-D2ffVj6Z.js";const m="/front_5th_chapter1-1",o={logg
     </div>
   </main>
 </div>
-`,p=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),r(),history.pushState(null,null,"/profile"),l()},n=()=>`
+`,b=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),r(),history.pushState(null,null,"/profile"),l()},n=()=>`
     <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -155,7 +155,7 @@ import{F as i}from"./footer-D2ffVj6Z.js";const m="/front_5th_chapter1-1",o={logg
     </div>
   </main>
 </div>
-`,g=t=>{t.preventDefault();const e=document.getElementById("username").value,s=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(e,s,a),localStorage.setItem("user",JSON.stringify({username:e,email:s,bio:a})),alert("프로필이 업데이트 되었습니다.")},f=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
+`,p=t=>{t.preventDefault();const e=document.getElementById("username").value,s=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(e,s,a),localStorage.setItem("user",JSON.stringify({username:e,email:s,bio:a})),alert("프로필이 업데이트 되었습니다.")},g=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
   <div id="root">
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
@@ -226,4 +226,4 @@ import{F as i}from"./footer-D2ffVj6Z.js";const m="/front_5th_chapter1-1",o={logg
       </div>
     </div>
   </div>
-  `},v=()=>(r(),location.pathname==="/profile"?o.loggedIn?f():(history.pushState(null,null,"/login"),l(),n()):location.pathname==="/login"?o.loggedIn?(history.pushState(null,null,"/"),l(),d()):n():location.pathname==="/logout"?(u(),n()):location.pathname==="/"?d():b()),l=()=>{document.body.innerHTML=v();const t=document.getElementById("login-form");t&&(t.onsubmit=p);const e=document.getElementById("profile-form");e&&(e.onsubmit=g);const s=document.getElementById("logout");s&&s.addEventListener("click",u)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){if(t.preventDefault(),!t.target.getAttribute("href"))return;history.pushState(null,null,`${m}href`),l()}});window.addEventListener("popstate",()=>l());l();
+  `},f=()=>(r(),location.pathname==="/profile"?o.loggedIn?g():(history.pushState(null,null,"/login"),l(),n()):location.pathname==="/login"?o.loggedIn?(history.pushState(null,null,"/"),l(),d()):n():location.pathname==="/logout"?(u(),n()):location.pathname==="/"?d():m()),l=()=>{document.body.innerHTML=f();const t=document.getElementById("login-form");t&&(t.onsubmit=b);const e=document.getElementById("profile-form");e&&(e.onsubmit=p);const s=document.getElementById("logout");s&&s.addEventListener("click",u)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const e=t.target.getAttribute("href");if(!e)return;history.pushState(null,null,e),l()}});window.addEventListener("popstate",()=>l());l();
