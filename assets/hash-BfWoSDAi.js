@@ -1,31 +1,29 @@
-import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},u=()=>{localStorage.removeItem("user"),o.loggedIn=!1,history.pushState(null,null,"/login"),l()},c=()=>{const{pathname:t}=location;return`
+import{c as d,s,P as m,F as r}from"./PostInput-Bp_qeNUY.js";const c=()=>{localStorage.removeItem("user"),s.loggedIn=!1,location.hash="#/login",o()},u=()=>{const{hash:t}=location;return`
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
 
       <nav class="bg-white shadow-md p-2 sticky top-14" tagItem="tab">
         <ul class="flex justify-around">
-          <li><a href="/" class="${t==="/"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">홈</a></li>
-        ${o.loggedIn?`
-          <li><a href="/profile" class="${t==="/profile"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">프로필</a></li>
+          <li><a href="#/" class="${t==="#/"?"text-blue-600":"text-gray-600"}" tagItem="nav">홈</a></li>
+        ${s.loggedIn?`
+          <li><a href="#/profile" class="${t==="#/profile"?"text-blue-600":"text-gray-600"}" tagItem="nav">프로필</a></li>
           <li><a href="/logout" id="logout" class="text-gray-600" tagItem="nav">로그아웃</a></li>
         `:`
-          <li><a href="/login" class="text-gray-600" tagItem="nav">로그인</a></li>
+          <li><a href="#/login" class="text-gray-600" tagItem="nav">로그인</a></li>
         `}
         </ul>
       </nav>
-`},d=()=>`
+`},i=()=>`
   <div id="root">
   <div class="bg-gray-100 min-h-screen flex justify-center">
     <div class="max-w-md w-full">
 
-      ${c()}
+      ${u()}
 
       <main class="p-4">
-        <div class="mb-4 bg-white rounded-lg shadow p-4">
-          <textarea class="w-full p-2 border rounded" placeholder="무슨 생각을 하고 계신가요?"></textarea>
-          <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">게시</button>
-        </div>
+
+      ${s.loggedIn?m():""}
 
         <div class="space-y-4">
 
@@ -111,11 +109,11 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
         </div>
       </main>
 
-      ${i()}
+      ${r()}
     </div>
   </div>
 </div>
-`,m=()=>`
+`,b=()=>`
   <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
@@ -125,13 +123,13 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
       <p class="text-gray-600 mb-8">
         요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
       </p>
-      <a href="/" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
+      <a href="#/" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
         홈으로 돌아가기
       </a>
     </div>
   </main>
 </div>
-`,b=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),r(),history.pushState(null,null,"/profile"),l()},n=()=>`
+`,g=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),d(),location.hash="#/profile",o()},n=()=>`
     <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -155,12 +153,12 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
     </div>
   </main>
 </div>
-`,p=t=>{t.preventDefault();const e=document.getElementById("username").value,s=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(e,s,a),localStorage.setItem("user",JSON.stringify({username:e,email:s,bio:a})),alert("프로필이 업데이트 되었습니다.")},g=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
+`,f=t=>{t.preventDefault();const e=document.getElementById("username").value,l=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(e,l,a),localStorage.setItem("user",JSON.stringify({username:e,email:l,bio:a})),alert("프로필이 업데이트 되었습니다.")},p=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
   <div id="root">
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
   
-      ${c()}
+      ${u()}
 
         <main class="p-4">
           <div class="bg-white p-8 rounded-lg shadow-md">
@@ -222,8 +220,8 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
           </div>
         </main>
 
-      ${i()}
+      ${r()}
       </div>
     </div>
   </div>
-  `},f=()=>(r(),location.pathname==="/profile"?o.loggedIn?g():(history.pushState(null,null,"/login"),l(),n()):location.pathname==="/login"?o.loggedIn?(history.pushState(null,null,"/"),l(),d()):n():location.pathname==="/logout"?(u(),n()):location.pathname==="/"?d():m()),l=()=>{document.body.innerHTML=f();const t=document.getElementById("login-form");t&&(t.onsubmit=b);const e=document.getElementById("profile-form");e&&(e.onsubmit=p);const s=document.getElementById("logout");s&&s.addEventListener("click",u)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const e=t.target.getAttribute("href");if(!e)return;history.pushState(null,null,e),l()}});window.addEventListener("popstate",()=>l());l();
+  `},v=()=>{d();const t=location.hash.replace("#","")||"/";return t==="/profile"?s.loggedIn?p():(location.hash="#/login",n()):t==="/login"?s.loggedIn?(location.hash="#/",i()):n():t==="/logout"?(c(),n()):t==="/"?i():b()},o=()=>{document.body.innerHTML=v();const t=document.getElementById("login-form");t&&(t.onsubmit=g);const e=document.getElementById("profile-form");e&&(e.onsubmit=f);const l=document.getElementById("logout");l&&l.addEventListener("click",c)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const e=t.target.getAttribute("href");if(!e)return;location.hash=e,o()}});window.addEventListener("hashchange",o);o();
