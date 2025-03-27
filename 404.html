@@ -3,12 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <title>Single Page Apps for GitHub Pages</title>
-    <script>
-      // 현재 경로 유지하면서 index.html로 리다이렉트
-      var redirectUrl =
-        "/front_5th_chapter1-1/index.html?p=" +
-        encodeURIComponent(window.location.pathname);
-      window.location.replace(redirectUrl);
+    <script type="text/javascript">
+      var pathSegmentsToKeep = 1;
+
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash,
+      );
     </script>
   </head>
   <body></body>

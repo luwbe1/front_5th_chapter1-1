@@ -1,4 +1,8 @@
-import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},u=()=>{localStorage.removeItem("user"),o.loggedIn=!1,history.pushState(null,null,"/login"),l()},c=()=>{const{pathname:t}=location;return`
+(function(){const l=document.createElement("link").relList;if(l&&l.supports&&l.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))a(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const i of o.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function s(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerPolicy&&(o.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?o.credentials="include":e.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function a(e){if(e.ep)return;e.ep=!0;const o=s(e);fetch(e.href,o)}})();const u=()=>`
+        <footer class="bg-gray-200 p-4 text-center">
+          <p>&copy; 2024 항해플러스. All rights reserved.</p>
+        </footer>
+`,r={loggedIn:!1},m=()=>{r.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},b=()=>{localStorage.removeItem("user"),r.loggedIn=!1,history.pushState(null,null,"/login"),n()},p=()=>{const{pathname:t}=location;return`
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
@@ -6,7 +10,7 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
       <nav class="bg-white shadow-md p-2 sticky top-14" tagItem="tab">
         <ul class="flex justify-around">
           <li><a href="/" class="${t==="/"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">홈</a></li>
-        ${o.loggedIn?`
+        ${r.loggedIn?`
           <li><a href="/profile" class="${t==="/profile"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">프로필</a></li>
           <li><a href="/logout" id="logout" class="text-gray-600" tagItem="nav">로그아웃</a></li>
         `:`
@@ -14,12 +18,12 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
         `}
         </ul>
       </nav>
-`},d=()=>`
+`},c=()=>`
   <div id="root">
   <div class="bg-gray-100 min-h-screen flex justify-center">
     <div class="max-w-md w-full">
 
-      ${c()}
+      ${p()}
 
       <main class="p-4">
         <div class="mb-4 bg-white rounded-lg shadow p-4">
@@ -111,11 +115,11 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
         </div>
       </main>
 
-      ${i()}
+      ${u()}
     </div>
   </div>
 </div>
-`,m=()=>`
+`,f=()=>`
   <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
@@ -131,7 +135,7 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
     </div>
   </main>
 </div>
-`,b=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),r(),history.pushState(null,null,"/profile"),l()},n=()=>`
+`,g=t=>{t.preventDefault();const l=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:l,email:"",bio:""})),m(),history.pushState(null,null,"/profile"),n()},d=()=>`
     <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -155,12 +159,12 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
     </div>
   </main>
 </div>
-`,p=t=>{t.preventDefault();const e=document.getElementById("username").value,s=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(e,s,a),localStorage.setItem("user",JSON.stringify({username:e,email:s,bio:a})),alert("프로필이 업데이트 되었습니다.")},g=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
+`,v=t=>{t.preventDefault();const l=document.getElementById("username").value,s=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(l,s,a),localStorage.setItem("user",JSON.stringify({username:l,email:s,bio:a})),alert("프로필이 업데이트 되었습니다.")},h=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
   <div id="root">
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
   
-      ${c()}
+      ${p()}
 
         <main class="p-4">
           <div class="bg-white p-8 rounded-lg shadow-md">
@@ -222,8 +226,8 @@ import{F as i}from"./footer-D2ffVj6Z.js";const o={loggedIn:!1},r=()=>{o.loggedIn
           </div>
         </main>
 
-      ${i()}
+      ${u()}
       </div>
     </div>
   </div>
-  `},f=()=>(r(),location.pathname==="/profile"?o.loggedIn?g():(history.pushState(null,null,"/login"),l(),n()):location.pathname==="/login"?o.loggedIn?(history.pushState(null,null,"/"),l(),d()):n():location.pathname==="/logout"?(u(),n()):location.pathname==="/"?d():m()),l=()=>{document.body.innerHTML=f();const t=document.getElementById("login-form");t&&(t.onsubmit=b);const e=document.getElementById("profile-form");e&&(e.onsubmit=p);const s=document.getElementById("logout");s&&s.addEventListener("click",u)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const e=t.target.getAttribute("href");if(!e)return;history.pushState(null,null,e),l()}});window.addEventListener("popstate",()=>l());l();
+  `},x=()=>(m(),location.pathname==="/profile"?r.loggedIn?h():(history.pushState(null,null,"/login"),n(),d()):location.pathname==="/login"?r.loggedIn?(history.pushState(null,null,"/"),n(),c()):d():location.pathname==="/logout"?(b(),d()):location.pathname==="/"?c():f()),n=()=>{document.body.innerHTML=x();const t=document.getElementById("login-form");t&&(t.onsubmit=g);const l=document.getElementById("profile-form");l&&(l.onsubmit=v);const s=document.getElementById("logout");s&&s.addEventListener("click",b)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const l=t.target.getAttribute("href");if(!l)return;history.pushState(null,null,l),n()}});window.addEventListener("popstate",()=>n());n();
