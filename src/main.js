@@ -2,14 +2,7 @@ import ErrorPage from "./pages/ErrorPage.js";
 import LoginPage from "./pages/LoginPage.js";
 import MainPage from "./pages/MainPage.js";
 import ProfilePage from "./pages/ProfilePage.js";
-
-export const state = {
-  loggedIn: false,
-};
-
-const checkLoginStatus = () => {
-  state.loggedIn = JSON.parse(localStorage.getItem("user")) !== null;
-};
+import { state, checkLoginStatus } from "./state/state.js";
 
 const handleLogout = () => {
   localStorage.removeItem("user");
