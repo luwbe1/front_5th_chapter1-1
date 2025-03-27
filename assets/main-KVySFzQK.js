@@ -1,4 +1,4 @@
-import{F as d}from"./footer-D2ffVj6Z.js";const r="/front_5th_chapter1-1",o={loggedIn:!1},u=()=>{o.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},c=()=>{localStorage.removeItem("user"),o.loggedIn=!1,history.pushState(null,null,"/login"),l()},m=()=>{const{pathname:t}=location;return`
+import{F as i}from"./footer-D2ffVj6Z.js";const m="/front_5th_chapter1-1",o={loggedIn:!1},r=()=>{o.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},u=()=>{localStorage.removeItem("user"),o.loggedIn=!1,history.pushState(null,null,"/login"),l()},c=()=>{const{pathname:t}=location;return`
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
@@ -14,12 +14,12 @@ import{F as d}from"./footer-D2ffVj6Z.js";const r="/front_5th_chapter1-1",o={logg
         `}
         </ul>
       </nav>
-`},i=()=>`
+`},d=()=>`
   <div id="root">
   <div class="bg-gray-100 min-h-screen flex justify-center">
     <div class="max-w-md w-full">
 
-      ${m()}
+      ${c()}
 
       <main class="p-4">
         <div class="mb-4 bg-white rounded-lg shadow p-4">
@@ -111,7 +111,7 @@ import{F as d}from"./footer-D2ffVj6Z.js";const r="/front_5th_chapter1-1",o={logg
         </div>
       </main>
 
-      ${d()}
+      ${i()}
     </div>
   </div>
 </div>
@@ -131,7 +131,7 @@ import{F as d}from"./footer-D2ffVj6Z.js";const r="/front_5th_chapter1-1",o={logg
     </div>
   </main>
 </div>
-`,p=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),u(),history.pushState(null,null,"/profile"),l()},n=()=>`
+`,p=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),r(),history.pushState(null,null,"/profile"),l()},n=()=>`
     <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -160,7 +160,7 @@ import{F as d}from"./footer-D2ffVj6Z.js";const r="/front_5th_chapter1-1",o={logg
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
   
-      ${m()}
+      ${c()}
 
         <main class="p-4">
           <div class="bg-white p-8 rounded-lg shadow-md">
@@ -222,8 +222,8 @@ import{F as d}from"./footer-D2ffVj6Z.js";const r="/front_5th_chapter1-1",o={logg
           </div>
         </main>
 
-      ${d()}
+      ${i()}
       </div>
     </div>
   </div>
-  `},v=()=>(u(),location.pathname=location.pathname.replace(r,""),location.pathname==="/profile"?o.loggedIn?f():(history.pushState(null,null,"/login"),l(),n()):location.pathname==="/login"?o.loggedIn?(history.pushState(null,null,"/"),l(),i()):n():location.pathname==="/logout"?(c(),n()):location.pathname==="/"?i():b()),l=()=>{document.body.innerHTML=v();const t=document.getElementById("login-form");t&&(t.onsubmit=p);const e=document.getElementById("profile-form");e&&(e.onsubmit=g);const s=document.getElementById("logout");s&&s.addEventListener("click",c)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){if(t.preventDefault(),!t.target.getAttribute("href"))return;history.pushState(null,null,`${r}href`),l()}});window.addEventListener("popstate",()=>l());l();
+  `},v=()=>(r(),location.pathname==="/profile"?o.loggedIn?f():(history.pushState(null,null,"/login"),l(),n()):location.pathname==="/login"?o.loggedIn?(history.pushState(null,null,"/"),l(),d()):n():location.pathname==="/logout"?(u(),n()):location.pathname==="/"?d():b()),l=()=>{document.body.innerHTML=v();const t=document.getElementById("login-form");t&&(t.onsubmit=p);const e=document.getElementById("profile-form");e&&(e.onsubmit=g);const s=document.getElementById("logout");s&&s.addEventListener("click",u)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){if(t.preventDefault(),!t.target.getAttribute("href"))return;history.pushState(null,null,`${m}href`),l()}});window.addEventListener("popstate",()=>l());l();
