@@ -1,5 +1,5 @@
-import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
+import Header from "../components/Header.js";
 
 const ProfilePage = () => {
   const user = JSON.parse(localStorage.getItem("user"));
