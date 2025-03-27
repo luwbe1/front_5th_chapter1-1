@@ -1,5 +1,8 @@
 import Footer from "./components/footer.js";
 import PostInput from "./components/PostInput.js";
+import LoginPage from "./pages/LoginPage.js";
+import ProfilePage from "./pages/ProfilePage.js";
+import ErrorPage from "./pages/ErrorPage.js";
 import { state, checkLoginStatus } from "./state/state.js";
 
 const handleLogout = () => {
@@ -136,23 +139,24 @@ const MainPage = () => /*html*/ `
 </div>
 `;
 
-const ErrorPage = () => /*html*/ `
-  <div id="root">
-  <main class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
-      <h1 class="text-2xl font-bold text-blue-600 mb-4">항해플러스</h1>
-      <p class="text-4xl font-bold text-gray-800 mb-4">404</p>
-      <p class="text-xl text-gray-600 mb-8">페이지를 찾을 수 없습니다</p>
-      <p class="text-gray-600 mb-8">
-        요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
-      </p>
-      <a href="#/" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
-        홈으로 돌아가기
-      </a>
-    </div>
-  </main>
-</div>
-`;
+// const ErrorPage = () => /*html*/ `
+//   <div id="root">
+//   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
+//     <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
+//       <h1 class="text-2xl font-bold text-blue-600 mb-4">항해플러스</h1>
+//       <p class="text-4xl font-bold text-gray-800 mb-4">404</p>
+//       <p class="text-xl text-gray-600 mb-8">페이지를 찾을 수 없습니다</p>
+//       <p class="text-gray-600 mb-8">
+//         요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
+//       </p>
+//       <a href="#/" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
+//         홈으로 돌아가기
+//       </a>
+//     </div>
+//   </main>
+// </div>
+// `;
+
 const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -169,34 +173,6 @@ const handleSubmit = (e) => {
   render();
 };
 
-const LoginPage = () => {
-  return /*html*/ `
-    <div id="root">
-  <main class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
-      <form id="login-form" onsubmit="handleSubmit(event)">
-        <div class="mb-4">
-          <input type="text" id="username" placeholder="사용자 이름" class="w-full p-2 border rounded">
-        </div>
-        <div class="mb-6">
-          <input type="password" id="password" placeholder="비밀번호" class="w-full p-2 border rounded">
-        </div>
-        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded font-bold" >로그인</button>
-      </form>
-      <div class="mt-4 text-center">
-        <a href="#" class="text-blue-600 text-sm">비밀번호를 잊으셨나요?</a>
-      </div>
-      <hr class="my-6">
-      <div class="text-center">
-        <button class="bg-green-500 text-white px-4 py-2 rounded font-bold">새 계정 만들기</button>
-      </div>
-    </div>
-  </main>
-</div>
-`;
-};
-
 const handleProfileSubmit = (e) => {
   e.preventDefault();
   const username = document.getElementById("username").value;
@@ -208,83 +184,6 @@ const handleProfileSubmit = (e) => {
   localStorage.setItem("user", JSON.stringify({ username, email, bio }));
 
   alert("프로필이 업데이트 되었습니다.");
-};
-
-const ProfilePage = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  return /*html*/ `
-  <div id="root">
-    <div class="bg-gray-100 min-h-screen flex justify-center">
-      <div class="max-w-md w-full">
-  
-      ${Header()}
-
-        <main class="p-4">
-          <div class="bg-white p-8 rounded-lg shadow-md">
-            <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
-              내 프로필
-            </h2>
-            <form id="profile-form" onsubmit="handleProfileSubmit(event)">
-              <div class="mb-4">
-                <label
-                  for="username"
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  >사용자 이름</label
-                >
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="사용자 이름"
-                  value="${user.username}"
-                  class="w-full p-2 border rounded"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="email"
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  >이메일</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="이메일"
-                  value="${user.email}"
-                  class="w-full p-2 border rounded"
-                />
-              </div>
-              <div class="mb-6">
-                <label
-                  for="bio"
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  >자기소개</label
-                >
-                <textarea
-                  id="bio"
-                  name="bio"
-                  rows="4"
-                  class="w-full p-2 border rounded"
-                  placeholder="자기소개"
-                >${user.bio}</textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-blue-600 text-white p-2 rounded font-bold"
-              >
-                프로필 업데이트
-              </button>
-            </form>
-          </div>
-        </main>
-
-      ${Footer()}
-      </div>
-    </div>
-  </div>
-  `;
 };
 
 const App = () => {
@@ -325,14 +224,16 @@ const App = () => {
 const render = () => {
   document.body.innerHTML = App();
 
+  // 로그인 폼 이벤트 바인딩
   const form = document.getElementById("login-form");
   if (form) {
-    form.onsubmit = handleSubmit;
+    form.addEventListener("submit", handleSubmit);
   }
 
+  // 프로필 수정 폼 이벤트 바인딩
   const profileForm = document.getElementById("profile-form");
   if (profileForm) {
-    profileForm.onsubmit = handleProfileSubmit;
+    profileForm.addEventListener("submit", handleProfileSubmit);
   }
 
   // 로그아웃 버튼 클릭 이벤트 추가

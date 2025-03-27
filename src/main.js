@@ -78,14 +78,16 @@ const App = () => {
 const render = () => {
   document.body.innerHTML = App();
 
+  // 로그인 폼 이벤트 바인딩
   const form = document.getElementById("login-form");
   if (form) {
-    form.onsubmit = handleSubmit;
+    form.addEventListener("submit", handleSubmit);
   }
 
+  // 프로필 수정 폼 이벤트 바인딩
   const profileForm = document.getElementById("profile-form");
   if (profileForm) {
-    profileForm.onsubmit = handleProfileSubmit;
+    profileForm.addEventListener("submit", handleProfileSubmit);
   }
 
   // 로그아웃 버튼 클릭 이벤트 추가

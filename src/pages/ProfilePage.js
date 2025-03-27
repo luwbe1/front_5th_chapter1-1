@@ -16,7 +16,7 @@ const ProfilePage = () => {
               <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
                 내 프로필
               </h2>
-              <form id="profile-form" onsubmit="handleProfileSubmit(event)">
+              <form id="profile-form">
                 <div class="mb-4">
                   <label
                     for="username"
