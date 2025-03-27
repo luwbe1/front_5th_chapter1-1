@@ -1,4 +1,4 @@
-import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))a(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const d of s.addedNodes)d.tagName==="LINK"&&d.rel==="modulepreload"&&a(d)}).observe(document,{childList:!0,subtree:!0});function e(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function a(t){if(t.ep)return;t.ep=!0;const s=e(t);fetch(t.href,s)}})();const u=()=>`
   <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
@@ -8,18 +8,18 @@ import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
       <p class="text-gray-600 mb-8">
         요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
       </p>
-      <a href="/" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
+      <a href="${window.location.hash!==""?"#/":"/"}" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
         홈으로 돌아가기
       </a>
     </div>
   </main>
 </div>
-`,n=()=>`
+`,b=()=>`
       <div id="root">
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
-        <form id="login-form" onsubmit="handleSubmit(event)">
+        <form id="login-form">
           <div class="mb-4">
             <input type="text" id="username" placeholder="사용자 이름" class="w-full p-2 border rounded">
           </div>
@@ -38,31 +38,70 @@ import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
       </div>
     </main>
   </div>
-  `,u=()=>{const{pathname:t}=location;return`
-        <header class="bg-blue-600 text-white p-4 sticky top-0">
-          <h1 class="text-2xl font-bold">항해플러스</h1>
-        </header>
-  
-        <nav class="bg-white shadow-md p-2 sticky top-14" tagItem="tab">
-          <ul class="flex justify-around">
-            <li><a href="/" class="${t==="/"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">홈</a></li>
-          ${o.loggedIn?`
-            <li><a href="/profile" class="${t==="/profile"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">프로필</a></li>
-            <li><a href="/logout" id="logout" class="text-gray-600" tagItem="nav">로그아웃</a></li>
-          `:`
-            <li><a href="/login" class="text-gray-600" tagItem="nav">로그인</a></li>
-          `}
-          </ul>
-        </nav>
-  `},i=()=>`
+  `,i={loggedIn:!1},m=()=>{i.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},r=()=>{const{pathname:l,hash:o}=location,e=o!=="";return`
+    <header class="bg-blue-600 text-white p-4 sticky top-0">
+      <h1 class="text-2xl font-bold">항해플러스</h1>
+    </header>
+
+    <nav class="bg-white shadow-md p-2 sticky top-14" tagItem="tab">
+      <ul class="flex justify-around">
+        <!-- 홈 메뉴 -->
+        <li>
+          <a 
+            href="${e?"#/":"/"}" 
+            class="${(e?o:l)===(e?"#/":"/")?"text-blue-600 font-bold":"text-gray-600"}" 
+            tagItem="nav"
+          >
+            홈
+          </a>
+        </li>
+
+        <!-- 로그인 상태에서만 보이는 메뉴 -->
+        ${i.loggedIn?`
+              <li>
+                <a 
+                  href="${e?"#/profile":"/profile"}" 
+                  class="${(e?o:l)===(e?"#/profile":"/profile")?"text-blue-600 font-bold":"text-gray-600"}" 
+                  tagItem="nav"
+                >
+                  프로필
+                </a>
+              </li>
+              <li>
+                <a href="${e?"#/logout":"/logout"}" id="logout" class="text-gray-600" tagItem="nav">
+                  로그아웃
+                </a>
+              </li>
+            `:`
+              <li>
+                <a 
+                  href="${e?"#/login":"/login"}" 
+                  class="text-gray-600" 
+                  tagItem="nav"
+                >
+                  로그인
+                </a>
+              </li>
+            `}
+      </ul>
+    </nav>
+  `},n=()=>`
+        <footer class="bg-gray-200 p-4 text-center">
+          <p>&copy; 2024 항해플러스. All rights reserved.</p>
+        </footer>
+`,c=()=>`
+  <div class="mb-4 bg-white rounded-lg shadow p-4">
+          <textarea class="w-full p-2 border rounded" placeholder="무슨 생각을 하고 계신가요?"></textarea>
+          <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">게시</button>
+        </div>`,p=()=>`
   <div id="root">
   <div class="bg-gray-100 min-h-screen flex justify-center">
     <div class="max-w-md w-full">
 
-      ${u()}
+      ${r()}
 
       <main class="p-4">
-         ${o.loggedIn?m():""}
+         ${i.loggedIn?c():""}
 
         <div class="space-y-4">
 
@@ -148,23 +187,23 @@ import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
         </div>
       </main>
 
-      ${d()}
+      ${n()}
     </div>
   </div>
 </div>
-`,p=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
+`,f=()=>{const l=JSON.parse(localStorage.getItem("user"));return`
     <div id="root">
       <div class="bg-gray-100 min-h-screen flex justify-center">
         <div class="max-w-md w-full">
     
-        ${u()}
+        ${r()}
   
           <main class="p-4">
             <div class="bg-white p-8 rounded-lg shadow-md">
               <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
                 내 프로필
               </h2>
-              <form id="profile-form" onsubmit="handleProfileSubmit(event)">
+              <form id="profile-form">
                 <div class="mb-4">
                   <label
                     for="username"
@@ -176,7 +215,7 @@ import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
                     id="username"
                     name="username"
                     placeholder="사용자 이름"
-                    value="${t.username}"
+                    value="${l.username}"
                     class="w-full p-2 border rounded"
                   />
                 </div>
@@ -191,7 +230,7 @@ import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
                     id="email"
                     name="email"
                     placeholder="이메일"
-                    value="${t.email}"
+                    value="${l.email}"
                     class="w-full p-2 border rounded"
                   />
                 </div>
@@ -207,7 +246,7 @@ import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
                     rows="4"
                     class="w-full p-2 border rounded"
                     placeholder="자기소개"
-                  >${t.bio}</textarea>
+                  >${l.bio}</textarea>
                 </div>
                 <button
                   type="submit"
@@ -219,8 +258,8 @@ import{s as o,P as m,F as d,c as r}from"./PostInput-Bp_qeNUY.js";const b=()=>`
             </div>
           </main>
   
-        ${d()}
+        ${n()}
         </div>
       </div>
     </div>
-    `},c=()=>{localStorage.removeItem("user"),o.loggedIn=!1,history.pushState(null,null,"/login"),l()},f=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),r(),history.pushState(null,null,"/profile"),l()},g=t=>{t.preventDefault();const e=document.getElementById("username").value,s=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(e,s,a),localStorage.setItem("user",JSON.stringify({username:e,email:s,bio:a})),alert("프로필이 업데이트 되었습니다.")},v=()=>(r(),location.pathname==="/profile"?o.loggedIn?p():(history.pushState(null,null,"/login"),l(),n()):location.pathname==="/login"?o.loggedIn?(history.pushState(null,null,"/"),l(),i()):n():location.pathname==="/logout"?(c(),n()):location.pathname==="/"?i():b()),l=()=>{document.body.innerHTML=v();const t=document.getElementById("login-form");t&&(t.onsubmit=f);const e=document.getElementById("profile-form");e&&(e.onsubmit=g);const s=document.getElementById("logout");s&&s.addEventListener("click",c)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const e=t.target.getAttribute("href");if(!e)return;history.pushState(null,null,e),l()}});window.addEventListener("popstate",()=>l());l();
+    `},g=l=>{l.preventDefault();const o=document.getElementById("username").value,e=document.getElementById("email").value,a=document.getElementById("bio").value;console.log(o,e,a),localStorage.setItem("user",JSON.stringify({username:o,email:e,bio:a})),alert("프로필이 업데이트 되었습니다.")};export{u as E,b as L,p as M,f as P,m as c,g as h,i as s};
