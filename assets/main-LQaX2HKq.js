@@ -1,16 +1,16 @@
-import{F as r}from"./footer-D2ffVj6Z.js";const a={loggedIn:!1},u=()=>{a.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},c=()=>{localStorage.removeItem("user"),a.loggedIn=!1,history.pushState(null,null,"/login"),s()},m=()=>{const{pathname:t}=location;return`
+import{F as r}from"./footer-D2ffVj6Z.js";const e="/front_5th_chapter1-1",a={loggedIn:!1},u=()=>{a.loggedIn=JSON.parse(localStorage.getItem("user"))!==null},c=()=>{localStorage.removeItem("user"),a.loggedIn=!1,history.pushState(null,null,`${e}/login`),s()},m=()=>{const{pathname:t}=location;return`
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
 
       <nav class="bg-white shadow-md p-2 sticky top-14" tagItem="tab">
         <ul class="flex justify-around">
-          <li><a href="/" class="${t==="/"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">홈</a></li>
+          <li><a href="${e}" class="${t===`${e}`?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">홈</a></li>
         ${a.loggedIn?`
-          <li><a href="/profile" class="${t==="/profile"?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">프로필</a></li>
-          <li><a href="/logout" id="logout" class="text-gray-600" tagItem="nav">로그아웃</a></li>
+          <li><a href="${e}/profile" class="${t===`${e}/profile`?"text-blue-600 font-bold":"text-gray-600"}" tagItem="nav">프로필</a></li>
+          <li><a href="${e}/logout" id="logout" class="text-gray-600" tagItem="nav">로그아웃</a></li>
         `:`
-          <li><a href="/login" class="text-gray-600" tagItem="nav">로그인</a></li>
+          <li><a href="${e}/login" class="text-gray-600" tagItem="nav">로그인</a></li>
         `}
         </ul>
       </nav>
@@ -131,7 +131,7 @@ import{F as r}from"./footer-D2ffVj6Z.js";const a={loggedIn:!1},u=()=>{a.loggedIn
     </div>
   </main>
 </div>
-`,p=t=>{t.preventDefault();const e=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:e,email:"",bio:""})),u(),history.pushState(null,null,"/profile"),s()},d=()=>`
+`,p=t=>{t.preventDefault();const l=document.getElementById("username").value;localStorage.setItem("user",JSON.stringify({username:l,email:"",bio:""})),u(),history.pushState(null,null,`${e}/profile`),s()},d=()=>`
     <div id="root">
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -155,7 +155,7 @@ import{F as r}from"./footer-D2ffVj6Z.js";const a={loggedIn:!1},u=()=>{a.loggedIn
     </div>
   </main>
 </div>
-`,g=t=>{t.preventDefault();const e=document.getElementById("username").value,o=document.getElementById("email").value,n=document.getElementById("bio").value;console.log(e,o,n),localStorage.setItem("user",JSON.stringify({username:e,email:o,bio:n})),alert("프로필이 업데이트 되었습니다.")},f=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
+`,g=t=>{t.preventDefault();const l=document.getElementById("username").value,o=document.getElementById("email").value,n=document.getElementById("bio").value;console.log(l,o,n),localStorage.setItem("user",JSON.stringify({username:l,email:o,bio:n})),alert("프로필이 업데이트 되었습니다.")},f=()=>{const t=JSON.parse(localStorage.getItem("user"));return`
   <div id="root">
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
@@ -226,4 +226,4 @@ import{F as r}from"./footer-D2ffVj6Z.js";const a={loggedIn:!1},u=()=>{a.loggedIn
       </div>
     </div>
   </div>
-  `},l="/front_5th_chapter1-1",v=()=>(u(),location.pathname===`${l}profile`?a.loggedIn?f():(history.pushState(null,null,`${l}login`),s(),d()):location.pathname===`${l}login`?a.loggedIn?(history.pushState(null,null,`${l}`),s(),i()):d():location.pathname===`${l}logout`?(c(),d()):location.pathname===`${l}`?i():b()),s=()=>{document.body.innerHTML=v();const t=document.getElementById("login-form");t&&(t.onsubmit=p);const e=document.getElementById("profile-form");e&&(e.onsubmit=g);const o=document.getElementById("logout");o&&o.addEventListener("click",c)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const e=t.target.getAttribute("href");if(!e)return;history.pushState(null,null,`${l}${e}`),s()}});window.addEventListener("popstate",()=>s());s();
+  `},v=()=>(u(),location.pathname===`${e}profile`?a.loggedIn?f():(history.pushState(null,null,`${e}login`),s(),d()):location.pathname===`${e}login`?a.loggedIn?(history.pushState(null,null,`${e}`),s(),i()):d():location.pathname===`${e}logout`?(c(),d()):location.pathname===`${e}`?i():b()),s=()=>{document.body.innerHTML=v();const t=document.getElementById("login-form");t&&(t.onsubmit=p);const l=document.getElementById("profile-form");l&&(l.onsubmit=g);const o=document.getElementById("logout");o&&o.addEventListener("click",c)};window.addEventListener("click",t=>{if(t.target.tagName==="A"){t.preventDefault();const l=t.target.getAttribute("href");if(!l)return;history.pushState(null,null,`${e}${l}`),s()}});window.addEventListener("popstate",()=>s());s();
